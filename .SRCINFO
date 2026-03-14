@@ -1,0 +1,15 @@
+pkgbase = caddy-crowdsec-git
+	pkgdesc = Caddy web server with integrated CrowdSec module, appsec and L4 support
+	pkgver = 2.11.2.r0.g1234567
+	pkgrel = 1
+	url = https://caddyserver.com/
+	arch = x86_64
+	license = Apache-2.0
+	makedepends = git
+	makedepends = go
+	provides = caddy
+	conflicts = caddy
+	source = caddy.service
+	sha256sums = SKIP
+
+pkgname = caddy-crowdsec-git

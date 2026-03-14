@@ -1,0 +1,6 @@
+# Ignore build artifacts
+pkg/
+src/
+*.pkg.tar.zst
+*.pkg.tar.xz
+*.log
