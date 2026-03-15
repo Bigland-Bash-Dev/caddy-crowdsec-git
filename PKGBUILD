@@ -1,4 +1,4 @@
-# Maintainer: Nathan burke <nathanburke17@outlook.com>
+# Maintainer: Nathan burke (Lightcode) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
 pkgver=2.11.2.r2.g99df529
 pkgrel=1
