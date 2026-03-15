@@ -1,34 +1,53 @@
-# caddy-crowdsec-git
+caddy-crowdsec-git
 
-A custom, hardened build of the Caddy web server, featuring integrated CrowdSec security modules, appsec and Caddy-L4 support.
+A custom, hardened build of the Caddy web server, featuring integrated CrowdSec security modules, AppSec, and Caddy-L4 support.
+Features
 
-## Features
-- **CrowdSec Integration**: Includes `http`, `appsec`, and `layer4` bouncers for advanced threat prevention.
-- **Caddy-L4**: Full Layer 4 support enabled for high-performance TCP/UDP stream management.
-- **Arch-Optimized**: Native Arch Linux packaging with systemd support.
-- **43+ Modules**: Compiled with an extensive selection of standard and non-standard Caddy modules.
+    CrowdSec Integration: Built with http, appsec, and layer4 bouncers for advanced threat prevention.
 
-## Installation
-You can install this package from the [Arch User Repository (AUR)](https://aur.archlinux.org/packages/caddy-crowdsec-git/):
+    Caddy-L4 Support: Native support for high-performance TCP/UDP stream management.
 
-```bash
+    Arch-Optimized: Native Arch Linux packaging with standardized systemd service files.
+
+    Extensible: Compiled with 43+ modules to provide a comprehensive feature set out of the box.
+
+Installation
+
+You can install this package from the AUR:
+Bash
+
 yay -S caddy-crowdsec-git
 
 Usage
 
-The package installs to standard paths:
+The package follows standard Arch Linux file system hierarchy:
 
     Binary: /usr/bin/caddy
 
-    Configuration: /etc/caddy/Caddyfile this does not overwrite your existing Caddyfile!! this assumes your using your own caddyfile :)
+    Configuration: /etc/caddy/Caddyfile
 
-    Service: Managed via systemctl
+        Note: This package will not overwrite your existing Caddyfile upon update.
 
-To start the service:
+    Service Management: Managed via systemd.
 
-     sudo systemctl enable --now caddy
-     
-     Credits
+Starting the service
+
+To enable and start the service:
+Bash
+
+sudo systemctl enable --now caddy
+
+Verifying the build
+
+To confirm the plugins were compiled successfully, you can run:
+Bash
+
+caddy list-modules | grep -E "crowdsec|l4"
+
+Contributing / Feature Requests
+
+If there are additional modules you would like to see included in this build, please open an Issue on GitHub.
+Credits
 
     Caddy Server
 
