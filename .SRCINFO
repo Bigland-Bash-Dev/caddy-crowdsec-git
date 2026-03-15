@@ -10,6 +10,10 @@ pkgbase = caddy-crowdsec-git
 	provides = caddy
 	conflicts = caddy
 	source = caddy.service
+	source = README.md
+	source = LICENSE
+	sha256sums = SKIP
+	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = caddy-crowdsec-git
