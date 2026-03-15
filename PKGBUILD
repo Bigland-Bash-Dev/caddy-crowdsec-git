@@ -1,19 +1,19 @@
 # Maintainer: Nathan burke (Lightcode) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r2.g99df529
+pkgver=2.11.2.r5.g6c4161a
 pkgrel=1
-pkgdesc="My custom build of the Caddy web server with integrated CrowdSec module, appsec support and L4 support"
+pkgdesc="A custom build of the Caddy web server with integrated CrowdSec module, appsec support and L4 support"
 arch=('x86_64')
 url="https://caddyserver.com/"
 license=('Apache-2.0')
+depends=()
 makedepends=('git' 'go')
 provides=('caddy')
 conflicts=('caddy')
-
+backup=('etc/caddy/Caddyfile')
 # These are the files sitting in your directory next to this PKGBUILD
-source=("caddy.service" "README.md" "LICENSE")
-sha256sums=('SKIP' 'SKIP' 'SKIP')
-
+source=()
+sha256sums=()
 pkgver() {
     printf "2.11.2.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }

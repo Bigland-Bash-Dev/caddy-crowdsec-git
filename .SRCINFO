@@ -1,5 +1,5 @@
 pkgbase = caddy-crowdsec-git
-	pkgdesc = My custom build of the Caddy web server with integrated CrowdSec module, appsec support and L4 support
+	pkgdesc = A custom build of the Caddy web server with integrated CrowdSec module, appsec support and L4 support
 	pkgver = 2.11.2.r2.g99df529
 	pkgrel = 1
 	url = https://caddyserver.com/
@@ -9,11 +9,6 @@ pkgbase = caddy-crowdsec-git
 	makedepends = go
 	provides = caddy
 	conflicts = caddy
-	source = caddy.service
-	source = README.md
-	source = LICENSE
-	sha256sums = SKIP
-	sha256sums = SKIP
-	sha256sums = SKIP
+	backup = etc/caddy/Caddyfile
 
 pkgname = caddy-crowdsec-git
