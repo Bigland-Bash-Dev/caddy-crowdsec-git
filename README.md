@@ -75,10 +75,10 @@ Code snippet
      }
  }
 
-**Note: You can generate your API key by running sudo cscli bouncers add caddy-bouncer on your host.
+Note: You can generate your API key by running sudo cscli bouncers add caddy-bouncer on your host.
 Usage Example
 
-*Below is an example of how to protect a service (e.g., Jellyfin) using the security modules:
+Below is an example of how to protect a service (e.g., Jellyfin) using the security modules:
 Code snippet
 
 jellyfin.yourdomain.com {
@@ -97,15 +97,15 @@ jellyfin.yourdomain.com {
 }
 
 
-**Maintenance
+Maintenance
 
-*This package uses xcaddy to build from the latest source. To update your build, simply run your system upgrade command:
+This package uses xcaddy to build from the latest source. To update your build, simply run your system upgrade command:
 
 yay -Syu
 
-**Contributing / Feature Requests
+Contributing / Feature Requests
 
-**If there are additional modules you would like to see included in this build, please open an Issue on GitHub.
+If there are additional modules you would like to see included in this build, please open an Issue on GitHub.
 Credits: Shoutout to the following projects! :)
 
     Caddy Server
