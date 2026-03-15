@@ -1,8 +1,8 @@
-# Maintainer: Nathan burke <lightcode17@proton.me>
+# Maintainer: Nathan burke <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r.g
+pkgver=2.11.2.r1.g8e6a09b
 pkgrel=1
-pkgdesc="Caddy web server with integrated CrowdSec module, appsec and L4 support"
+pkgdesc="My custom build of the Caddy web server with integrated CrowdSec module, appsec support and L4 support"
 arch=('x86_64')
 url="https://caddyserver.com/"
 license=('Apache-2.0')
@@ -33,7 +33,8 @@ package() {
     # Install binary and service
     install -Dm755 caddy "${pkgdir}/usr/bin/caddy"
     install -Dm644 "${srcdir}/caddy.service" "${pkgdir}/usr/lib/systemd/system/caddy.service"
-
+    install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     # Create a place for the config, but don't overwrite user files!
     install -dm755 "${pkgdir}/etc/caddy"
 }

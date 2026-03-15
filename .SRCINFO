@@ -1,6 +1,6 @@
 pkgbase = caddy-crowdsec-git
-	pkgdesc = Caddy web server with integrated CrowdSec module, appsec and L4 support
-	pkgver = 2.11.2.r0.g1234567
+	pkgdesc = My custom build of the Caddy web server with integrated CrowdSec module, appsec support and L4 support
+	pkgver = 2.11.2.r1.g8e6a09b
 	pkgrel = 1
 	url = https://caddyserver.com/
 	arch = x86_64
