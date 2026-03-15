@@ -1,4 +1,4 @@
-**caddy-crowdsec-git *Author/Maintainer Nathan burke (lightcode)
+caddy-crowdsec-git Author/Maintainer Nathan burke (lightcode)
 
 A custom, hardened build of the Caddy web server, featuring integrated CrowdSec security modules, AppSec, and Caddy-L4 support.
 Features
@@ -11,14 +11,14 @@ Features
 
     Extensible: Compiled with 43+ modules to provide a comprehensive feature set out of the box.
 
-**Installation
+Installation
 
 You can install this package from the AUR:
 Bash
 
 yay -S caddy-crowdsec-git
 
-**Usage
+Usage
 
 The package follows standard Arch Linux file system hierarchy:
 
@@ -51,13 +51,17 @@ Bash
 
 yay -S caddy-crowdsec-git
 
-**Configuration
+Configuration:
 
-*To connect your Caddy instance to your local CrowdSec engine, add the following global block to the top of your Caddyfile:
+
+To connect your Caddy instance to your local CrowdSec engine, add the following global block to the top of your Caddyfile:
 Code snippet
 
+
+
+
 {
-     # debug      #uncomment this to enable debug support
+     # debug
   email example@outlook.com # Replace with your email for Let's Encrypt
  
      crowdsec {
@@ -75,14 +79,22 @@ Code snippet
      }
  }
 
+
+
+
+
+
 Note: You can generate your API key by running sudo cscli bouncers add caddy-bouncer on your host.
 Usage Example
 
 Below is an example of how to protect a service (e.g., Jellyfin) using the security modules:
 Code snippet
 
+
+
+
 jellyfin.yourdomain.com {
-	tls example@outlook.com # This allows lets encrypt to send you emails when they issue ssl certs! Totally optional tho
+	tls example@outlook.com # This allows lets encrypt to send you emails when they issue ssl certs!
      	log
      	route {
          	crowdsec
@@ -95,6 +107,8 @@ jellyfin.yourdomain.com {
          	format json
      	}
 }
+
+
 
 
 Maintenance
