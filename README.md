@@ -3,74 +3,76 @@ caddy-crowdsec-git
 A custom, hardened build of the Caddy web server, featuring integrated CrowdSec security modules, AppSec, and Caddy-L4 support.
 Features
 
-    CrowdSec Integration: Built with HTTP, AppSec, and Layer4 bouncers for advanced threat prevention.
+CrowdSec Integration: Built with HTTP, AppSec, and Layer4 bouncers for advanced threat prevention.
 
-    Caddy-L4 Support: Native support for high-performance TCP/UDP stream management.
+Caddy-L4 Support: Native support for high-performance TCP/UDP stream management.
 
-    Arch-Optimized: Native Arch Linux packaging with standardized systemd service files.
+Extensible: Compiled with 43+ modules to provide a comprehensive feature set out of the box.
 
-    Extensible: Compiled with 43+ modules to provide a comprehensive feature set out of the box.
+Installation:
 
-Installation
+You can install this package from the AUR using your preferred helper
 
-You can install this package from the AUR using your preferred helper:
+note: requires xcaddy or xcaddy-bin from the aur will fail to build if it's not there
 
-yay -S caddy-crowdsec-git
+    yay -S xcaddy
+    yay -S caddy-crowdsec-git
 
-Usage
+Usage:
 
 The package follows standard Arch Linux file system hierarchy:
 
-    Binary: /usr/bin/caddy
+Binary: /usr/bin/caddy
 
-    Configuration: /etc/caddy/Caddyfile
+Configuration: /etc/caddy/Caddyfile
 
-    Service Management: Managed via systemd.
-
-    Note: This package will not overwrite your existing Caddyfile upon installation. A default Caddyfile is not currently provided, but one will be added in future updates.
-
-Starting the service
+Service Management: Managed via systemd.
 
 To enable and start the service:
 
-sudo systemctl enable --now caddy
+    sudo systemctl enable --now caddy
+    sudo systemctl enable caddy
+    sudo systemctl start caddy
 
 Verifying the build
 
 To confirm the plugins were compiled successfully, run:
 
-caddy list-modules | grep -E "crowdsec|l4"
+    caddy list-modules | grep -E "crowdsec|l4"
 
-Configuration
+To list all modules run 
+
+    caddy list-modules
+
+Configuration:
 
 To connect your Caddy instance to your local CrowdSec engine, add the following global block to the top of your Caddyfile:
 
-{
+    {
     email your-email@example.com # Replace with your email for Let's Encrypt
-
     crowdsec {
         api_url http://localhost:8080
         api_key <API_KEY_HERE>
         ticker_interval 15s
         appsec_url http://127.0.0.1:7422
     }
-
     log {
         output file /var/log/caddy/access.log {
             roll_size 30MiB
             roll_keep 5
         }
     }
-}
+    }
 
+Tip: Generate your API key by running the following command on your host terminal shell
 
-Tip: Generate your API key by running sudo cscli bouncers add caddy-bouncer on your host.
+    sudo cscli bouncers add caddy-bouncer 
 
 Usage Example: Protecting a Service
 
-Below is an example of how to protect a service (e.g., Jellyfin) using the security modules:
+Below is an example of how to protect a service (e.g., Jellyfin) using crowdsec and logging to a json file
 
-jellyfin.yourdomain.com {
+    jellyfin.yourdomain.com {
     tls your-email@example.com
     log
     route {
@@ -78,32 +80,28 @@ jellyfin.yourdomain.com {
         appsec
         reverse_proxy 127.0.0.1:8096
     }
-
     log {
         output file /var/log/caddy/jellyfin_access.log
         format json
     }
-}
+    }
 
-Maintenance
+Maintenance:
 
 This package uses xcaddy to build from the latest source. To update your build to the latest version, simply run your system upgrade command:
 
-yay -Syu
+    yay -Syu
 
-Contributing
+Contributing:
 
 If there are additional modules you would like to see included in this build, please open an Issue on GitHub.
 Credits
 
-Special thanks to the following projects:
+Special thanks to the following projects!
 
-    Caddy Server
-
-    CrowdSec
-
-    hslatman/caddy-crowdsec-bouncer
-
-    mholt/caddy-l4
+Caddy Server
+CrowdSec
+hslatman/caddy-crowdsec-bouncer
+mholt/caddy-l4
 
 Maintained by Nathan Burke (Lightcode)

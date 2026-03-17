@@ -1,7 +1,7 @@
 pkgbase = caddy-crowdsec-git
-	pkgdesc = A custom build of the Caddy web server with integrated CrowdSec, AppSec, and L4 support
+	pkgdesc = A custom build of the Caddy web server with integrated CrowdSec, AppSec modules
 	pkgver = 2.11.2.r6.gccb4f91
-	pkgrel = 1
+	pkgrel = 1.1
 	url = https://caddyserver.com/
 	arch = x86_64
 	license = Apache-2.0
@@ -14,10 +14,6 @@ pkgbase = caddy-crowdsec-git
 	conflicts = caddy
 	backup = etc/caddy/Caddyfile
 	source = caddy.service
-	source = README.md
-	source = LICENSE
-	sha256sums = SKIP
-	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = caddy-crowdsec-git
