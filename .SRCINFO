@@ -1,6 +1,6 @@
 pkgbase = caddy-crowdsec-git
 	pkgdesc = A custom build of the Caddy web server with integrated CrowdSec, AppSec modules
-	pkgver = 2.11.2.r11.g5264572
+	pkgver = 2.11.2.r12.gce5d942
 	pkgrel = 2
 	url = https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git
 	arch = x86_64
@@ -14,6 +14,10 @@ pkgbase = caddy-crowdsec-git
 	conflicts = caddy
 	backup = etc/caddy/Caddyfile
 	source = caddy.service
+	source = LICENSE
+	source = README.md
+	sha256sums = SKIP
+	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = caddy-crowdsec-git
