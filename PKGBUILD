@@ -1,7 +1,7 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r12.gce5d942
-pkgrel=4  # Bumped this to 4 since we are modifying new source files
+pkgver=2.11.2.r15.gacc80eb
+pkgrel=5
 pkgdesc="A custom build of the Caddy web server with integrated CrowdSec, AppSec modules"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
@@ -12,16 +12,15 @@ provides=('caddy')
 conflicts=('caddy')
 backup=('etc/caddy/Caddyfile')
 
-# Add LICENSE and README.md here so they are tracked and moved to srcdir
-source=('caddy.service' 'LICENSE' 'README.md')
-sha256sums=('SKIP' 'SKIP' 'SKIP')
+# Added spaces between source files and matched the SKIP count
+source=('caddy.service' 'LICENSE' 'README.md' 'NOTICE')
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
     printf "2.11.2.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-    # This flag prevents the "Permission Denied" errors in the Go cache later
     export GOFLAGS="-modcacherw"
 
     xcaddy build latest \
@@ -38,9 +37,10 @@ package() {
     # Install systemd service
     install -Dm644 "${srcdir}/caddy.service" "${pkgdir}/usr/lib/systemd/system/caddy.service"
 
-    # Use ${srcdir} to find the license and readme
+    # Use ${srcdir} to find the license, readme, and notice files
     install -Dm644 "${srcdir}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     install -Dm644 "${srcdir}/README.md" "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+    install -Dm644 "${srcdir}/NOTICE" "${pkgdir}/usr/share/doc/${pkgname}/NOTICE"
 
     # Setup config dir
     install -dm755 "${pkgdir}/etc/caddy"

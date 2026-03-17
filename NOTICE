@@ -1,0 +1,15 @@
+NOTICE
+
+Caddy-Crowdsec-Git
+Copyright 2026 Nathan Burke (Bigland-Bash-Dev)
+
+This product includes software developed by:
+
+    Matthew Holt and the Caddy Contributors (https://caddyserver.com)
+    Licensed under the Apache License 2.0.
+
+    Herman Slatman (https://github.com/hslatman)
+    Author of the Caddy-CrowdSec-Bouncer modules.
+
+    The CrowdSec Team (https://crowdsec.net)
+    For the underlying security engine and API specifications.
