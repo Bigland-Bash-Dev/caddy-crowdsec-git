@@ -1,7 +1,7 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
 pkgver=2.11.2.r12.gce5d942
-pkgrel=2
+pkgrel=3  # Bumped this to 3 since we are adding new source files
 pkgdesc="A custom build of the Caddy web server with integrated CrowdSec, AppSec modules"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
@@ -11,17 +11,17 @@ makedepends=('git' 'go' 'xcaddy')
 provides=('caddy')
 conflicts=('caddy')
 backup=('etc/caddy/Caddyfile')
-# Add LICENSE and README.md here so makepkg tracks them
+
+# Add LICENSE and README.md here so they are tracked and moved to srcdir
 source=('caddy.service' 'LICENSE' 'README.md')
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
-    # Since you're running this inside your repo, this works great
     printf "2.11.2.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-    # It's a good idea to make the module cache writable to avoid those "Permission Denied" errors
+    # This flag prevents the "Permission Denied" errors in the Go cache later
     export GOFLAGS="-modcacherw"
 
     xcaddy build latest \
@@ -32,20 +32,21 @@ build() {
 }
 
 package() {
-    # 1. Install the binary
+    # Install binary
     install -Dm755 caddy "${pkgdir}/usr/bin/caddy"
 
-    # 2. Install the systemd service
+    # Install systemd service
     install -Dm644 "${srcdir}/caddy.service" "${pkgdir}/usr/lib/systemd/system/caddy.service"
 
-    # 3. Install License and Docs using ${srcdir} to be safe
+    # Use ${srcdir} to find the license and readme
     install -Dm644 "${srcdir}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     install -Dm644 "${srcdir}/README.md" "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 
-    # 4. Set up config directory
+    # Setup config dir
     install -dm755 "${pkgdir}/etc/caddy"
 
-    # 5. Create a placeholder Caddyfile if it doesn't exist
-    # Note: Using 'echo' is safer than 'touch' here to ensure the file is created in $pkgdir
-    echo "# Caddyfile" > "${pkgdir}/etc/caddy/Caddyfile"
+    # Create an empty Caddyfile if it doesn't exist
+    if [ ! -f "${pkgdir}/etc/caddy/Caddyfile" ]; then
+        echo "# Caddyfile" > "${pkgdir}/etc/caddy/Caddyfile"
+    fi
 }
