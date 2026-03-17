@@ -1,7 +1,7 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
 pkgver=2.11.2.r12.gce5d942
-pkgrel=3  # Bumped this to 3 since we are adding new source files
+pkgrel=4  # Bumped this to 4 since we are modifying new source files
 pkgdesc="A custom build of the Caddy web server with integrated CrowdSec, AppSec modules"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
