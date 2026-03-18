@@ -13,16 +13,14 @@ Installation:
 
 You can install this package from the AUR using your preferred helper
 
-note: requires xcaddy or xcaddy-bin from the aur will fail to build if it's not there
-
-    yay -S xcaddy
     yay -S caddy-crowdsec-git
+    paru -S caddy-crowdsec-git
 
 Usage:
 
 The package follows standard Arch Linux file system hierarchy:
 
-Binary: /usr/bin/caddy
+Binary: /usr/bin/caddy --replaces the default caddy binary!
 
 Configuration: /etc/caddy/Caddyfile
 
@@ -38,7 +36,7 @@ Verifying the build
 
 To confirm the plugins were compiled successfully, run:
 
-    caddy list-modules | grep -E "crowdsec|l4"
+    caddy list-modules | grep -E "crowdsec|layer4"
 
 To list all modules run 
 
@@ -71,6 +69,8 @@ Tip: Generate your API key by running the following command on your host termina
 Usage Example: Protecting a Service
 
 Below is an example of how to protect a service (e.g., Jellyfin) using crowdsec and logging to a json file
+
+Example caddyfile block:
 
     jellyfin.yourdomain.com {
     tls your-email@example.com
