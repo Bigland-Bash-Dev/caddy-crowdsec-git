@@ -1,7 +1,7 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
 pkgver=2.11.2.r20.g6bb8cf5
-pkgrel=16
+pkgrel=17
 pkgdesc="Caddy web server 200+ modules incl. CrowdSec, Coraza WAF, Auth Portal, and 10+ DNS Providers"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"

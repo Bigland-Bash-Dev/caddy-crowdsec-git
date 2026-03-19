@@ -1,45 +1,40 @@
 caddy-crowdsec-git
 
-A custom, hardened build of the Caddy web server, featuring integrated CrowdSec security, enterprise-grade WAF capabilities, and advanced Layer 4 traffic management.
+A custom, powerhouse build of the Caddy web server, featuring integrated CrowdSec security, enterprise-grade WAF capabilities, and a universal DNS-01 challenge suite.
 Features
 
-    CrowdSec Integration: Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
+    CrowdSec Multi-Layer Protection: Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
 
-    Enterprise Security Stack: Includes Coraza WAF (OWASP compatible), Rate Limiting, and Geo-IP filtering for deep packet inspection and regional access control.
+    Universal DNS Suite: Includes over 10+ DNS providers (Cloudflare, DuckDNS, Linode, Porkbun, etc.) for seamless wildcard SSL certificates via DNS-01 challenges.
 
-    Caddy-L4 Support: Native support for high-performance TCP/UDP stream management, allowing you to proxy and secure non-HTTP traffic like SSH, DNS, or databases.
+    Identity & SSO Portal: Built with caddy-security to provide MFA (Multi-Factor Authentication) and Single Sign-On for all your proxied services.
 
-    Extensible & Comprehensive: Compiled with 180 modules to provide an all-in-one feature set for advanced home labs and production environments.
+    Layer 4 Networking: Native support for high-performance TCP/UDP stream management—secure your SSH, DNS, or database traffic alongside your web apps.
 
-    Hardened Build: Manually compiled with the native Go toolchain to ensure full compatibility with Arch Linux security flags (PIE, RELRO, Stack Protector).
+    Performance Cache & Media: Features cache-handler and imagefilter for lightning-fast delivery of media-heavy sites (like photography portfolios).
 
-Installation:
+    The "Double Century" Build: Compiled with 207 modules, providing an all-in-one feature set for advanced home labs and Proxmox environments.
 
-You can install this package from the AUR using your preferred helper:
+Installation
 
+Install directly from the AUR:
 
 	yay -S caddy-crowdsec-git
 	# or
 	paru -S caddy-crowdsec-git
 
-Usage:
+Usage
 
-To enable and start the service:
+Enable and start the service:
 
+	sudo systemctl enable --now caddy
 
-	sudo systemctl enable --now caddy or
-	sudo systemctl enable caddy
-	sudo systemctl start caddy
+Note: Ensure your Caddyfile is configured before starting. This package replaces the need for xcaddy—all 207 modules are pre-baked into the binary.
 
- Make sure you have your Caddyfile setup properly before you try to run caddy,  most of the hard work is done tho usually you would need to build this manually using xcaddy,
-not anymore!! Hopefully someone
+To confirm the plugins were compiled successfully:
 
-Verifying the build
-
-To confirm the plugins were compiled successfully, run:
-
-	caddy list-modules | grep -E "crowdsec|layer4"
-
+	caddy list-modules | wc -l
+	# Should return 200+
 
 Configuration
 
@@ -89,14 +84,16 @@ Maintenance
 
 	yay -Syu 
 
-Credits
+## Credits & Licensing
 
-    Caddy Server
+This project is a compilation of open-source work. The following core components make this build possible:
 
-    CrowdSec
+* **Caddy Server:** The core extensible web server.
+* **CrowdSec (hslatman):** The logic behind our real-time threat remediation.
+* **Caddy-Security (greenpau):** For the SSO, MFA, and Authp capabilities.
+* **Caddy-L4 (mholt):** Enabling raw TCP/UDP stream management.
+* **Cache-Handler:** High-performance HTTP caching.
+* **Libdns Suite:** Powering our 10+ DNS-01 provider integrations.
 
-    hslatman/caddy-crowdsec-bouncer
-
-    mholt/caddy-l4
-
+For a full list of bundled dependencies and legal notices, please see the [NOTICE](./NOTICE) file.
 Maintained by: Nathan Burke (Bigland-Bash-Dev)
