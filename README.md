@@ -5,15 +5,15 @@ Features
 
     CrowdSec Multi-Layer Protection: Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
 
-    Universal DNS Suite: Includes over 10+ DNS providers (Cloudflare, DuckDNS, Linode, Porkbun, etc.) for seamless wildcard SSL certificates via DNS-01 challenges.
+    Universal DNS Suite: Includes popular DNS providers (Cloudflare, DuckDNS, Linode, etc.) for seamless wildcard SSL certificates via DNS-01 challenges.
 
     Identity & SSO Portal: Built with caddy-security to provide MFA (Multi-Factor Authentication) and Single Sign-On for all your proxied services.
 
     Layer 4 Networking: Native support for high-performance TCP/UDP stream management—secure your SSH, DNS, or database traffic alongside your web apps.
 
-    Performance Cache & Media: Features cache-handler and imagefilter for lightning-fast delivery of media-heavy sites (like photography portfolios).
+    Performance Cache & Media: Features cache-handler and imagefilter for lightning-fast delivery of media-heavy sites.
 
-    The "Double Century" Build: Compiled with 207 modules, providing an all-in-one feature set for advanced home labs and Proxmox environments.
+    Compiled with 201 modules, providing an all-in-one feature set for all your home lab needs.
 
 Installation
 
@@ -93,7 +93,7 @@ This project is a compilation of open-source work. The following core components
 * **Caddy-Security (greenpau):** For the SSO, MFA, and Authp capabilities.
 * **Caddy-L4 (mholt):** Enabling raw TCP/UDP stream management.
 * **Cache-Handler:** High-performance HTTP caching.
-* **Libdns Suite:** Powering our 10+ DNS-01 provider integrations.
+* **Libdns Suite:** Dns Modules.
 
 For a full list of bundled dependencies and legal notices, please see the [NOTICE](./NOTICE) file.
 Maintained by: Nathan Burke (Bigland-Bash-Dev)
