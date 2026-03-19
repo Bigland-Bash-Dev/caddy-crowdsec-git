@@ -1,13 +1,12 @@
 pkgbase = caddy-crowdsec-git
-	pkgdesc = A custom build of the Caddy web server with integrated CrowdSec, AppSec modules
-	pkgver = 2.11.2.r15.gacc80eb
-	pkgrel = 6
+	pkgdesc = Caddy web server with integrated CrowdSec, AppSec, and Layer 4 modules
+	pkgver = 2.11.2.r18.g7c9788f
+	pkgrel = 14
 	url = https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git
 	arch = x86_64
 	license = Apache-2.0
 	makedepends = git
 	makedepends = go
-	makedepends = xcaddy
 	depends = glibc
 	depends = libcap
 	provides = caddy
