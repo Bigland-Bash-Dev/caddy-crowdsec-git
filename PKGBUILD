@@ -1,8 +1,8 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r20.g6bb8cf5
-pkgrel=17
-pkgdesc="Caddy web server 200+ modules incl. CrowdSec, Coraza WAF, Auth Portal, and 10+ DNS Providers"
+pkgver=2.11.2.r22.ge261e28
+pkgrel=18
+pkgdesc="Hardened caddy server- crowdsec support- dns support- and coraza support- 200+ modules"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
 license=('Apache-2.0')
@@ -53,20 +53,12 @@ import (
 	_ "github.com/shift72/caddy-geo-ip"
 	_ "github.com/mholt/caddy-l4"
 	_ "github.com/mholt/caddy-dynamicdns"
-
-	// Universal DNS Provider Suite
+	// DNS
 	_ "github.com/caddy-dns/cloudflare"
-	_ "github.com/caddy-dns/duckdns"
-	_ "github.com/caddy-dns/digitalocean"
-	_ "github.com/caddy-dns/namecheap"
-	_ "github.com/caddy-dns/godaddy"
-	_ "github.com/caddy-dns/route53"
-	_ "github.com/caddy-dns/gandi"
-	_ "github.com/caddy-dns/ovh"
-	_ "github.com/caddy-dns/linode"
-	_ "github.com/caddy-dns/porkbun"
-	_ "github.com/caddy-dns/vultr"
-
+    	_ "github.com/caddy-dns/duckdns"
+    	_ "github.com/caddy-dns/digitalocean"
+    	_ "github.com/caddy-dns/godaddy"
+    	_ "github.com/caddy-dns/linode"
 	// Advanced Infrastructure & Performance
 	_ "github.com/caddyserver/transform-encoder"
 	_ "github.com/caddyserver/replace-response"
