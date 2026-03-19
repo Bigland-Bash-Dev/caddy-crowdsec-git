@@ -2,7 +2,7 @@
 pkgname=caddy-crowdsec-git
 pkgver=2.11.2.r18.g7c9788f
 pkgrel=14
-pkgdesc="Caddy web server with integrated CrowdSec, AppSec, and Layer 4 modules"
+pkgdesc="Hardened Caddy server with CrowdSec (AppSec/L4), Coraza WAF, Rate-Limit, and GeoIP support"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
 license=('Apache-2.0')
