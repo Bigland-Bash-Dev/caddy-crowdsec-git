@@ -1,8 +1,8 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r18.g7c9788f
-pkgrel=14
-pkgdesc="Hardened Caddy server with CrowdSec (AppSec/L4), Coraza WAF, Rate-Limit, and GeoIP support"
+pkgver=2.11.2.r20.g6bb8cf5
+pkgrel=16
+pkgdesc="Caddy web server 200+ modules incl. CrowdSec, Coraza WAF, Auth Portal, and 10+ DNS Providers"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
 license=('Apache-2.0')
@@ -30,33 +30,58 @@ build() {
     mkdir -p "$srcdir/build"
     cd "$srcdir/build"
 
-    # Writing the custom Caddy entry point
+# Writing the custom Caddy entry point
     cat <<EOF > main.go
 package main
+
 import (
-    caddycmd "github.com/caddyserver/caddy/v2/cmd"
-    _ "github.com/caddyserver/caddy/v2/modules/standard"
-    
-    // Security & Bouncers
-    _ "github.com/hslatman/caddy-crowdsec-bouncer/http"
-    _ "github.com/hslatman/caddy-crowdsec-bouncer/appsec"
-    _ "github.com/hslatman/caddy-crowdsec-bouncer/layer4"
-    
-    // Web Application Firewall (Coraza)
-    _ "github.com/corazawaf/coraza-caddy/v2"
-    
-    // Traffic Control
-    _ "github.com/mholt/caddy-ratelimit"
-    _ "github.com/shift72/caddy-geo-ip"
-    
-    // Layer 4 Networking
-    _ "github.com/mholt/caddy-l4"
+	caddycmd "github.com/caddyserver/caddy/v2/cmd"
+
+	// Standard Caddy Distribution
+	_ "github.com/caddyserver/caddy/v2/modules/standard"
+
+	// Security & Bouncers
+	_ "github.com/hslatman/caddy-crowdsec-bouncer/http"
+	_ "github.com/hslatman/caddy-crowdsec-bouncer/appsec"
+	_ "github.com/hslatman/caddy-crowdsec-bouncer/layer4"
+
+	// Web Application Firewall (Coraza)
+	_ "github.com/corazawaf/coraza-caddy/v2"
+
+	// Traffic Control & Networking
+	_ "github.com/mholt/caddy-ratelimit"
+	_ "github.com/shift72/caddy-geo-ip"
+	_ "github.com/mholt/caddy-l4"
+	_ "github.com/mholt/caddy-dynamicdns"
+
+	// Universal DNS Provider Suite
+	_ "github.com/caddy-dns/cloudflare"
+	_ "github.com/caddy-dns/duckdns"
+	_ "github.com/caddy-dns/digitalocean"
+	_ "github.com/caddy-dns/namecheap"
+	_ "github.com/caddy-dns/godaddy"
+	_ "github.com/caddy-dns/route53"
+	_ "github.com/caddy-dns/gandi"
+	_ "github.com/caddy-dns/ovh"
+	_ "github.com/caddy-dns/linode"
+	_ "github.com/caddy-dns/porkbun"
+	_ "github.com/caddy-dns/vultr"
+
+	// Advanced Infrastructure & Performance
+	_ "github.com/caddyserver/transform-encoder"
+	_ "github.com/caddyserver/replace-response"
+	_ "github.com/caddyserver/cache-handler"
+	_ "github.com/ueffel/caddy-imagefilter"
+	_ "github.com/greenpau/caddy-security"
+	_ "github.com/lucaslorentz/caddy-docker-proxy/v2"
 )
+
 func main() {
-    caddycmd.Main()
+	caddycmd.Main()
 }
 EOF
     go mod init caddy
+    go get github.com/caddyserver/caddy/v2@latest
     go mod tidy
 
     # Build with system LDFLAGS to ensure PIE and hardening
