@@ -1,0 +1,21 @@
+post_install() {
+  # Create the caddy user/group if they don't exist
+  if ! getent group caddy >/dev/null; then
+    groupadd --system caddy
+  fi
+  if ! getent passwd caddy >/dev/null; then
+    useradd --system --gid caddy --create-home --home-dir /var/lib/caddy \
+      --shell /usr/bin/nologin --comment "Caddy web server" caddy
+  fi
+
+  # Set initial permissions for the config and data dirs
+  chown -R caddy:caddy /etc/caddy /var/lib/caddy 2>/dev/null || true
+
+  echo "==> Caddy 'Double Century' (201 modules) installed!"
+  echo "==> Edit /etc/caddy/Caddyfile and start the service:"
+  echo "==> systemctl enable --now caddy"
+}
+
+post_upgrade() {
+  post_install
+}

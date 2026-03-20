@@ -1,6 +1,6 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r25.g5c12c5c
+pkgver=2.11.2.r26.g8f9fda8
 pkgrel=1
 pkgdesc="Hardened caddy server- crowdsec support- dns support- and coraza support- 200+ modules"
 arch=('x86_64')
