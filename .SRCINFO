@@ -1,6 +1,6 @@
 pkgbase = caddy-crowdsec-git
 	pkgdesc = Hardened caddy server- crowdsec support- dns support- and coraza support- 200+ modules
-	pkgver = 2.11.2.r23.g7f873a2
+	pkgver = 2.11.2.r25.g5c12c5c
 	pkgrel = 1
 	url = https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git
 	arch = x86_64
