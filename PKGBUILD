@@ -1,7 +1,8 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r26.g8f9fda8
+pkgver=2.11.2.r27.gf93b420
 pkgrel=1
+install=caddy.install
 pkgdesc="Hardened caddy server- crowdsec support- dns support- and coraza support- 200+ modules"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
@@ -12,8 +13,8 @@ provides=('caddy')
 conflicts=('caddy')
 backup=('etc/caddy/Caddyfile')
 
-source=('caddy.service' 'LICENSE' 'README.md' 'NOTICE')
-sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
+source=('caddy.service' 'LICENSE' 'README.md' 'NOTICE' 'caddy.install')
+sha256sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
     # Since this is a -git package, we pull the version from the local source
@@ -95,7 +96,6 @@ package() {
     install -Dm644 "LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     install -Dm644 "README.md" "${pkgdir}/usr/share/doc/${pkgname}/README.md"
     install -Dm644 "NOTICE" "${pkgdir}/usr/share/doc/${pkgname}/NOTICE"
-
     # Configuration directory and default Caddyfile
     install -dm755 "${pkgdir}/etc/caddy"
     echo "# Caddyfile" > "${pkgdir}/etc/caddy/Caddyfile"
