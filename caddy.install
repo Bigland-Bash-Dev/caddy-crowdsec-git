@@ -11,9 +11,11 @@ post_install() {
   # Set initial permissions for the config and data dirs
   chown -R caddy:caddy /etc/caddy /var/lib/caddy 2>/dev/null || true
 
-  echo "==> Caddy 'Double Century' (201 modules) installed!"
-  echo "==> Edit /etc/caddy/Caddyfile and start the service:"
-  echo "==> systemctl enable --now caddy"
+  echo "==> Caddy Web Server is now installed!!"
+  echo "==> Edit /etc/caddy/Caddyfile and start the service using:"
+  echo "==> systemctl enable --now caddy or"
+  echo "==> systemctl enable caddy"
+  echo "==> systemctl start caddy"
 }
 
 post_upgrade() {

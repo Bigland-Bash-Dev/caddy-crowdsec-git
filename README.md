@@ -1,45 +1,63 @@
 caddy-crowdsec-git
 
-A custom, powerhouse build of the Caddy web server, featuring integrated CrowdSec security, enterprise-grade WAF capabilities, and a universal DNS-01 challenge suite.
-Features
+A Highly customzed build of the Caddy web server!! 😎, featuring integrated CrowdSec modules, and enterprise-grade WAF capabilities.
+This build is designed for those who want a quick easy way to get up and running without having to build plugins using xcaddy manually
 
-    CrowdSec Multi-Layer Protection: Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
+CrowdSec Multi-Layer Protection: Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
 
-    Universal DNS Suite: Includes popular DNS providers (Cloudflare, DuckDNS, Linode, etc.) for seamless wildcard SSL certificates via DNS-01 challenges.
+Universal DNS Suite: Includes popular DNS providers (Cloudflare, DuckDNS, Linode, etc.) for seamless wildcard SSL certificates.
 
-    Identity & SSO Portal: Built with caddy-security to provide MFA (Multi-Factor Authentication) and Single Sign-On for all your proxied services.
+Identity & SSO Portal: Built with caddy-security to provide MFA (Multi-Factor Authentication) and Single Sign-On for all your proxied services.
 
-    Layer 4 Networking: Native support for high-performance TCP/UDP stream management—secure your SSH, DNS, or database traffic alongside your web apps.
+Layer 4 Networking: Native support for high-performance TCP/UDP stream management—secure your SSH, DNS, or database traffic alongside your web apps.
 
-    Performance Cache & Media: Features cache-handler and imagefilter for lightning-fast delivery of media-heavy sites.
+Performance Cache & Media: Features cache-handler and imagefilter for lightning-fast delivery of media-heavy sites.
 
-    Compiled with 201 modules, providing an all-in-one feature set for all your home lab needs.
+Compiled with 201 modules, providing an all-in-one feature set for all your home lab needs.
 
-Installation
+**Installation:
 
-Install directly from the AUR:
+You can Install directly from the AUR with the following commands:
 
 	yay -S caddy-crowdsec-git
 	# or
 	paru -S caddy-crowdsec-git
 
-Usage
+    Usage:
 
-Enable and start the service:
+**Enable and start the service:
 
-	sudo systemctl enable --now caddy
+	sudo systemctl enable --now caddy #or you can use
+    sudo systemctl enable caddy
+    sudo systemctl start caddy
 
-Note: Ensure your Caddyfile is configured before starting. This package replaces the need for xcaddy—all 207 modules are pre-baked into the binary.
+Note: Ensure your Caddyfile is configured before starting. This package replaces the need for xcaddy—all 201 modules are pre-baked into the binary out of the box also this builds from source!! and is compiled using some extra go flags check out the pkgbuild if your curious!
 
-To confirm the plugins were compiled successfully:
+ You can use checksec to see how the binary is compiled
+ 
+    sudo pacman -Syy checksec
+    
+    checksec file $(which caddy)
+
+  _____ _    _ ______ _____ _  __ _____ ______ _____
+ / ____| |  | |  ____/ ____| |/ // ____|  ____/ ____|
+| |    | |__| | |__ | |    | ' /| (___ | |__ | |
+| |    |  __  |  __|| |    |  <  \___ \|  __|| |
+| |____| |  | | |___| |____| . \ ____) | |___| |____
+ \_____|_|  |_|______\_____|_|\_\_____/|______\_____|
+
+RELRO           Stack Canary      CFI               NX            PIE             RPATH      RUNPATH      Symbols         FORTIFY    Fortified   Fortifiable      Name                            
+Full RELRO      No Canary Found   NO SHSTK & NO IBT NX enabled    PIE Enabled     No RPATH   No RUNPATH   No Symbols      No         0           2                /usr/bin/caddy 
+
+**To confirm the plugins were compiled successfully:
 
 	caddy list-modules | wc -l
-	# Should return 200+
+	# Should return 207
 
 Configuration
 
 To connect your Caddy instance to your local CrowdSec engine, 
- add the following global block to the top of your Caddyfile:
+ add the following global block to the very top of your Caddyfile:
 
 
 	{
@@ -89,11 +107,10 @@ Maintenance
 This project is a compilation of open-source work. The following core components make this build possible:
 
 * **Caddy Server:** The core extensible web server.
-* **CrowdSec (hslatman):** The logic behind our real-time threat remediation.
+* **CrowdSec bouncer module for caddy (This is not the actual crowdsec bouncer just the module) (hslatman)
 * **Caddy-Security (greenpau):** For the SSO, MFA, and Authp capabilities.
 * **Caddy-L4 (mholt):** Enabling raw TCP/UDP stream management.
 * **Cache-Handler:** High-performance HTTP caching.
-* **Libdns Suite:** Dns Modules.
+* **Libdns Suite:** Dns Modules - Cloudflare, Linode, godaddy, etc....
 
-For a full list of bundled dependencies and legal notices, please see the [NOTICE](./NOTICE) file.
 Maintained by: Nathan Burke (Bigland-Bash-Dev)
