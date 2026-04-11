@@ -1,14 +1,14 @@
 # Maintainer: Nathan Burke (Bigland-Bash-Dev) <nathanburke17@outlook.com>
 pkgname=caddy-crowdsec-git
-pkgver=2.11.2.r27.gf93b420
-pkgrel=1
+pkgver=2.11.2.r30.g66c5f28
+pkgrel=2
 install=caddy.install
-pkgdesc="Hardened caddy server- crowdsec support- dns support- and coraza support- 200+ modules"
+pkgdesc="Hardened caddy server with built in crowdsec and popular dns modules"
 arch=('x86_64')
 url="https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git"
 license=('Apache-2.0')
 depends=('glibc' 'libcap')
-makedepends=('git' 'go') # Removed xcaddy
+makedepends=('git' 'go') # Removed xcaddy no longer needed
 provides=('caddy')
 conflicts=('caddy')
 backup=('etc/caddy/Caddyfile')
@@ -96,7 +96,10 @@ package() {
     install -Dm644 "LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
     install -Dm644 "README.md" "${pkgdir}/usr/share/doc/${pkgname}/README.md"
     install -Dm644 "NOTICE" "${pkgdir}/usr/share/doc/${pkgname}/NOTICE"
-    # Configuration directory and default Caddyfile
+    # Create the default config directory
     install -dm755 "${pkgdir}/etc/caddy"
+    # Create the /etc/caddy/conf.d directory
+    install -dm755 "${pkgdir}/etc/caddy/conf.d"
+    # Echos a empty caddyfile into /etc/caddy/ Will not overwrite your existing one.
     echo "# Caddyfile" > "${pkgdir}/etc/caddy/Caddyfile"
 }
