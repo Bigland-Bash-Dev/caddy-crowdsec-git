@@ -1,54 +1,47 @@
-				**caddy-crowdsec-git**
+### caddy-crowdsec-git
 
-A Custom build of the Caddy web server with crowdsec-module integration and Appsec 😎
+A custom, hardened build of the Caddy web server featuring native CrowdSec integration, AppSec (WAF) support, and a pre-compiled suite of essential modules.
 
-This build is designed for those who want a quick easy way to get up and running with a working caddy/crowdsec config!
+🚀 Features
 
-CrowdSec Multi-Layer Protection: Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
+* **CrowdSec Multi-Layer Protection:** Built-in HTTP, AppSec (WAF), and Layer 4 bouncers for real-time threat intelligence and automated blocking.
+* **Built-in DNS Providers:** Includes popular **libdns** modules (cloudflare,DuckDNS,Linode,GoDaddy,etc.) no manual xcaddy builds required.
+* **Identity & SSO Portal:** Powered by **caddy-security** to provide MFA (Multi-Factor Authentication) and Single Sign-On for all your proxied services.
+* **Layer 4 Networking:** Native support for high-performance TCP/UDP stream management to secure SSH, DNS, or database traffic.
+* **Performance Optimization:** Includes cache-handler and imagefilter modules for lightning-fast delivery of media-heavy sites.
 
-Includes popular DNS provider modules (Cloudflare, DuckDNS, Linode, Godaddy etc.) these modules usually have to be built
+## 📦 Installation
 
-Identity & SSO Portal: Built with caddy-security module to provide MFA (Multi-Factor Authentication) and Single Sign-On for all your proxied services.
+You can install this package directly from the AUR using your preferred AUR helper:
 
-Layer 4 Networking: Native support for high-performance TCP/UDP stream management—secure your SSH, DNS, or database traffic
+# Using yay
+yay -S caddy-crowdsec-git
 
-Features the cache-handler module and imagefilter module for lightning-fast delivery of media-heavy sites.
+# Using paru
+paru -S caddy-crowdsec-git
 
-providing an all-in-one feature set for all your home lab needs.
+# [!WARNING]
+Always backup your existing Caddyfile before installation. I am not responsible for lost configurations if they are overwritten during the update process.
 
-**Installation:
+## Verify Installation:
+To confirm that all modules were compiled successfully, check the module count:
 
-You can Install directly from the AUR with the following commands:
+    caddy list-modules | wc -l
+    
+## ⚙️ Configuration:
 
-	yay -S caddy-crowdsec-git
-	
-    # or
-	
-    paru -S caddy-crowdsec-git
+1. Enable the Service
 
+Manage the Caddy daemon via systemctl:
 
+    sudo systemctl enable --now caddy
 
-Ensure your Caddyfile is configured properly before starting or your going to get errors Right now this comes with a blank Caddyfile because i assume if anyone wants to use it they are going to write thier own thier are examples down below tho to get you started with a working caddy/crowdsec config.
+2. Global Configuration:
 
+To connect Caddy to your CrowdSec engine, add this global block to the very top of your Caddyfile.
 
-
-**To confirm the plugins were compiled successfully you can list the number count using the following command!
-
-	caddy list-modules | wc -l
-	# Should return 201
-
-Configuration
-
-Next you can enable and start the service using systemctl
-
-	sudo systemctl enable --now caddy or
-   	 sudo systemctl enable caddy
-    	sudo systemctl start caddy
-
-
-To connect your Caddy server to your local CrowdSec engine,
-add the following global block to the very top of your Caddyfile, figured id provide an example to help someone out!
-
+[!TIP]
+Generate your API key by running sudo cscli bouncers add caddy-bouncer on the host where CrowdSec is installed.
 
 	{
     	email your-email@example.com # Replace with your email (Optional)
@@ -66,14 +59,11 @@ add the following global block to the very top of your Caddyfile, figured id pro
     	}
 	}
 
-    Tip: Generate your API key by running the following command on your host terminal shell (Where ever you installed crowdsec assuming it's on the same server as caddy
+    
+    
+3. Usage Example (Reverse Proxy)
 
-    sudo cscli bouncers add caddy-bouncer
-
-
-Below is an example of how to protect a service (e.g., Jellyfin) using crowdsec and logging to a json file.
-
-Example caddyfile block:
+Below is an example of protecting a service (e.g., Jellyfin) with CrowdSec and AppSec enabled:
 
 	jellyfin.yourdomain.com {
     	tls your-email@example.com
@@ -88,10 +78,6 @@ Example caddyfile block:
         	format json
     	}
 	}
-
-Updating is done via pacman
-
-	yay -Syu
 
 ## Credits & Licensing
 
