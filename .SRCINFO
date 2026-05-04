@@ -1,7 +1,7 @@
 pkgbase = caddy-crowdsec-git
-	pkgdesc = Hardened caddy server with built in crowdsec and popular dns modules
-	pkgver = 2.11.2.r30.g66c5f28
-	pkgrel = 2
+	pkgdesc = Hardened caddy server with built-in crowdsec, Coraza WAF, and DNS modules
+	pkgver = 2.11.2.r32.g3651a6d
+	pkgrel = 3
 	url = https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git
 	install = caddy.install
 	arch = x86_64
@@ -13,15 +13,7 @@ pkgbase = caddy-crowdsec-git
 	provides = caddy
 	conflicts = caddy
 	backup = etc/caddy/Caddyfile
-	source = caddy.service
-	source = LICENSE
-	source = README.md
-	source = NOTICE
-	source = caddy.install
-	sha256sums = SKIP
-	sha256sums = SKIP
-	sha256sums = SKIP
-	sha256sums = SKIP
+	source = caddy-crowdsec-git::git+https://github.com/Bigland-Bash-Dev/caddy-crowdsec-git.git
 	sha256sums = SKIP
 
 pkgname = caddy-crowdsec-git
